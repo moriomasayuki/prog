@@ -1,0 +1,38 @@
+<input type="button" id="sample-load" value="保存内容を呼び出す" />
+<textarea id="sample-text"></textarea>
+<input type="button" id="sample-save" value="テキストを保存する" />
+<input type="button" id="sample-delete" value="テキストの保存を削除する" />
+
+<script>
+//呼び出しボタンの処理
+document.getElementById("sample-load").onclick = function(){
+    if(localStorage.getItem('memo') === null){
+        alert('内容が保存されていません。');
+        return false;
+    }
+    var text = localStorage.getItem('memo');
+    document.getElementById("sample-text").value = text;
+    alert('保存内容を呼び出しました。');
+};
+
+//保存ボタンの処理
+document.getElementById("sample-save").onclick = function(){
+    var text = document.getElementById("sample-text").value;
+    if(!text){
+        alert('内容が入力されていません。');
+        return false;
+    }
+    localStorage.setItem('memo', text);
+    alert('内容を保存しました。');
+};
+
+//削除ボタンの処理
+document.getElementById("sample-delete").onclick = function(){
+    if(localStorage.getItem('memo') === null){
+        alert('内容が保存されていません。');
+        return false;
+    }
+    localStorage.removeItem('memo');
+    alert('保存内容を削除しました。');
+};
+</script>
